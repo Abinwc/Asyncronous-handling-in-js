@@ -1,27 +1,22 @@
-const blogs = [{ title: "Blog One", content: "This is blog one" },
-{ title: "Blog Two", content: "This is blog two" }];
+const blogs=[
+    {title:"Blog One",description:"This is Blog One"},
+    {title:"Blog Two",description:"This is Blog Two"}
+];
 
-function createBlog(blog, callback) {
-    setTimeout(() => {
-        blogs.push(blog)
+
+
+function createBlog(blog,callback){
+    setTimeout(()=>{
+        blogs.push(blog);
         callback();
-    }, 2000);
+    },2000)   
 }
 
 
-function getBlogs() {
-    let output = '';
-    blogs.forEach(blog => {
-        output += blog.title+"\n";
-    });
-    console.log(output)
+function getBlogs(){
+    blogs.forEach((blog)=>{
+         console.log(blog.title);
+    })
 }
 
-createBlog({ title: "Blog Three", body: "This is Blog Three" }, getBlogs);
-
-
-
-
-
-
-
+createBlog({title:"Blog Three",description:"This is Blog Three"},getBlogs);

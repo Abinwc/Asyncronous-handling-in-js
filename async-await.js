@@ -1,41 +1,45 @@
-const blogs = [{ title: "Blog One", content: "This is blog one" },
-{ title: "Blog Two", content: "This is blog two" }];
+const blogs = [
+    { title: "Blog One", description: "This is Blog One" },
+    { title: "Blog Two", description: "This is Blog Two" }
+];
 
 function createBlog(blog) {
+
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            blogs.push(blog)
-
-            const error = false;
+            blogs.push(blog);
+            const error = true;
 
             if (!error) {
                 resolve();
             }
             else {
-                reject('Something went wrong');
+                reject('There is an error');
             }
-        }, 2000);
+        }, 2000)
+    })
+
+}
+
+function getBlogs() {
+    blogs.forEach((blog) => {
+        console.log(blog.title);
     })
 }
 
 
-function getBlogs() {
-    let output = '';
-    blogs.forEach(blog => {
-        output += blog.title+"\n";
-    });
-    console.log(output)
+async function handleAsyncronous() {
+    try {
+        await createBlog({ title: "Blog Three", description: "This is Blog Three" });
+        getBlogs();
+    }
+    catch (error) {
+        console.log(error);
+    }
+
 }
 
-async function handlingPromise() {
-    try{
-    await createBlog({ title: "Blog Three", body: "This is Blog Three" });
-    getBlogs();
-    }
-    catch(error){
-        console.log(error)
-    }
-    
-}
+handleAsyncronous();
 
-handlingPromise()
+
+
